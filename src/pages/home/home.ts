@@ -19,7 +19,8 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.products = this.productProvider.getProducts();
+    this.productProvider.getProducts()
+      .subscribe(response => console.log(response));
   }
 
 }
