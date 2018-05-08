@@ -1,6 +1,6 @@
 {
   "name": "chiritos",
-  "app_id": "",
+  "app_id": "89e3bd42",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
