@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product } from '../../product';
+import { PRODUCTS } from '../../product-mock';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,13 +19,13 @@ const httpOptions = {
 @Injectable()
 export class ProductProvider {
 
-  public products = [];
+  public products: Product[];
   
   constructor(public http: HttpClient) {
   }
 
-  getProducts(){
-    return this.http.get('./assets/data.json');
+  getProducts(): Product[] {
+    return PRODUCTS;
   }
 
 }
