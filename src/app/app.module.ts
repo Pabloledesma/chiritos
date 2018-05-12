@@ -12,7 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProductProvider } from '../providers/product/product';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 export const firebaseConfig = {
@@ -21,7 +21,8 @@ export const firebaseConfig = {
   databaseURL: "https://tienda-de-ropa-2f129.firebaseio.com",
   projectId: "tienda-de-ropa-2f129",
   storageBucket: "tienda-de-ropa-2f129.appspot.com",
-  messagingSenderId: "1041903516706"
+  messagingSenderId: "1041903516706",
+  timestampsInSnapshots: true
 };
 
 @NgModule({
@@ -38,7 +39,7 @@ export const firebaseConfig = {
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
@@ -53,7 +54,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    AngularFireDatabase,
+    AngularFirestoreModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProductProvider
   ]
