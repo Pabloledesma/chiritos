@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NavController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
+import { ProductDetailPage } from '../product-detail/product-detail';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +10,8 @@ import { ProductProvider } from '../../providers/product/product';
 })
 export class HomePage {
 
-  public products = [];
-  
+  public allProducts;
+   
   constructor(
     private productProvider: ProductProvider, 
     private http: HttpClient, 
@@ -20,7 +21,11 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.productProvider.getProducts()
-      .subscribe(response => console.log(response));
+      .subscribe(response => this.allProducts = response); 
+  }
+
+  goToProductDetailPage(product){
+    this.navCtrl.push(ProductDetailPage, {productDetails: product});
   }
 
 }

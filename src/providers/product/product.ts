@@ -20,7 +20,6 @@ export class ProductProvider {
   public products = [];
   
   constructor(public http: HttpClient) {
-    console.log('Hello ProductProvider Provider');
   }
 
   getProducts(){
