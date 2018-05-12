@@ -17,11 +17,14 @@ export class HomePage {
     private http: HttpClient, 
     public navCtrl: NavController) {
 
+      this.productProvider.getProducts().valueChanges()
+      .subscribe(products => {
+        this.allProducts = products;
+      });
+
   }
 
-  ionViewDidLoad(){
-    this.allProducts = this.productProvider.getProducts(); 
-  }
+  ionViewDidLoad(){}
 
   goToProductDetailPage(product){
     this.navCtrl.push(ProductDetailPage, {productDetails: product});

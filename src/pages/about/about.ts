@@ -9,17 +9,29 @@ import { Product } from '../../product';
 })
 export class AboutPage {
 
-  bestSellerProducts: Product[];
+  allProducts: any[];
+  bestSellerProducts: any[];
 
   constructor(private productProvider: ProductProvider, public navCtrl: NavController) {
-
+    this.productProvider.getProducts().valueChanges()
+      .subscribe(products => {
+        this.allProducts = products;
+      });
   }
 
   ionViewDidLoad(){
-    this.bestSellerProducts = this.productProvider.getProducts().filter( product => {
-      product.bestSeller == true;
-    });
-     
+    
   }
+
+ /* getBestSellers(){
+    for(let i = 0; i < this.allProducts.length; i++){
+      if(this.allProducts[i].bestSeller){
+        console.log(this.allProducts[i]);
+        this.bestSellerProducts.push(this.allProducts[i]);
+      }
+
+    }
+    console.log(this.bestSellerProducts);
+  }*/
 
 }

@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Product } from '../../product';
 import { PRODUCTS } from '../../product-mock';
@@ -21,11 +22,15 @@ export class ProductProvider {
 
   public products: Product[];
   
-  constructor(public http: HttpClient) {
+  constructor(private afDB: AngularFireDatabase, public http: HttpClient) {
   }
 
-  getProducts(): Product[] {
-    return PRODUCTS;
+  getProducts(){
+    return this.afDB.list('products/');
+  }
+  
+  upsertProduct(product){
+    this.afDB.database.ref('products/' + product.id).set(product);
   }
 
 }
