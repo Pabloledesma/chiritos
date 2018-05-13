@@ -25,6 +25,7 @@ export const firebaseConfig = {
   timestampsInSnapshots: true
 };
 
+
 @NgModule({
   declarations: [
     MyApp,

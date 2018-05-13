@@ -32,13 +32,10 @@ interface Product {
 export class ProductProvider {
 
   productsCol: AngularFirestoreCollection<Product>;
-  products: Observable<Product[]>;
-  
+  products: Observable<any[]>;
+
   constructor(private afs: AngularFirestore, public http: HttpClient) {
     this.afs.firestore.settings({timestampsInSnapshots: true});
-    for (let i = 0; i < PRODUCTS.length; i++) {
-      this.addProduct(PRODUCTS[i]);
-    }
   }
 
   ionViewDidLoad(){
@@ -50,6 +47,10 @@ export class ProductProvider {
     return this.afs.collection('products').valueChanges();
   }
 
+  getProduct(productId): Observable<any>{
+    return this.afs.doc('products/' + productId).valueChanges();
+  }
+
   addProduct(product){
     this.afs.collection('products').add(product);
   }
@@ -58,8 +59,19 @@ export class ProductProvider {
     //this.afDB.database.ref('products/' + product.id).set(product);
   }
 
+  deleteProduct(productId){
+    this.afs.doc('products/' + productId).delete();
+  }
+
+  /*getBestSellers(){
+    return this.afs.collection('products', ref => ref.where('bestSeller', '==', true)).valueChanges();
+  }*/
+
+   
   getBestSellers(){
-    //return this.afDB.database.ref().child('products').orderByChild('bestSeller').equalTo(true).toString;
+    this.productsCol = this.afs.collection('products', ref => ref.where('bestSeller', '==', true));
+    return this.productsCol.valueChanges();
+      
   }
 
 }

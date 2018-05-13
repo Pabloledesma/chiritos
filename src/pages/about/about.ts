@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
 import { Product } from '../../product';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'page-about',
@@ -9,14 +11,14 @@ import { Product } from '../../product';
 })
 export class AboutPage {
 
-  bestSellerProducts: any[];
+  bestSellerProducts: Observable<any[]>;
 
   constructor(private productProvider: ProductProvider, public navCtrl: NavController) {
-    //console.log(this.productProvider.getBestSellers());
+    //this.productProvider.getBestSellers();
   }
 
   ionViewDidLoad(){
-    
+    this.bestSellerProducts = this.productProvider.getBestSellers();
   }
 
  
