@@ -62,11 +62,6 @@ export class ProductProvider {
   deleteProduct(productId){
     this.afs.doc('products/' + productId).delete();
   }
-
-  /*getBestSellers(){
-    return this.afs.collection('products', ref => ref.where('bestSeller', '==', true)).valueChanges();
-  }*/
-
    
   getBestSellers(){
     this.productsCol = this.afs.collection('products', ref => ref.where('bestSeller', '==', true));
