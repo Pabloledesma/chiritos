@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
+import { FilterModalPage } from '../pages/filter-modal/filter-modal';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProductDetailPage } from '../pages/product-detail/product-detail';
@@ -33,7 +34,8 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    ProductDetailPage
+    ProductDetailPage,
+    FilterModalPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    ProductDetailPage
+    ProductDetailPage,
+    FilterModalPage
   ],
   providers: [
     StatusBar,
