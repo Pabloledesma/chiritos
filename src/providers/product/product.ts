@@ -43,8 +43,28 @@ export class ProductProvider {
     this.products = this.productsCol.valueChanges();
   }
 
-  getProducts(){
+  getProducts(filterState?){
+    if(filterState){
+      if(filterState.femaleSelected && filterState.maleSelected){
+        return this.afs.collection('products').valueChanges();
+      } else {
+        
+        this.productsCol = this.afs.collection('products', ref => {
+
+          if(filterState.femaleSelected)
+           return ref.where('gender', '==', 'female');
+          if(filterState.maleSelected)
+           return ref.where('gender', '==', 'male');
+          
+          
+        });
+  
+        return this.productsCol.valueChanges();
+      }
+    }
+
     return this.afs.collection('products').valueChanges();
+    
   }
 
   getProduct(productId): Observable<any>{

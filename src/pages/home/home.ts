@@ -29,6 +29,9 @@ export class HomePage {
 
   openFilterModal(){
     let openFilterModal = this.modalController.create(FilterModalPage);
+    openFilterModal.onDidDismiss((filterState) => {
+      this.allProducts = this.productProvider.getProducts(filterState);
+    });
     openFilterModal.present();
   }
 
